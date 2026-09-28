@@ -1,0 +1,675 @@
+/* Tema "Codex", el mismo lenguaje visual que Castilla App:
+   pergamino, oro, marrón tinta y esquinas ornamentales doradas. */
+:root {
+  --bg: #f5e6c8;          /* pergamino */
+  --card: #efdfbd;        /* panel del chat */
+  --bubble: #faf3e2;      /* respuestas */
+  --field: #fcf7ec;       /* caja de texto */
+  --ink: #2d1f10;         /* tinta */
+  --ink-2: #4a3728;
+  --ink-3: #6b5344;
+  --gold: #c9a227;
+  --gold-dark: #8b6914;
+  --gold-soft: #e9d49a;
+  --tan: #c8a882;
+  --note-bg: #e8ddd0;
+  --note-ink: #4a3728;
+  --error: #8b2500;
+  --shadow: 0 1px 0 rgba(139, 105, 20, 0.25), 0 10px 30px -18px rgba(45, 31, 16, 0.45);
+  --radius: 20px;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, "Liberation Mono", monospace;
+  color-scheme: light;
+}
+
+/* Noche: cuero oscuro con el mismo oro. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1d140b;
+    --card: #2b1d0f;
+    --bubble: #372613;
+    --field: #241809;
+    --ink: #f5e6c8;
+    --ink-2: #e8ddd0;
+    --ink-3: #c8a882;
+    --gold: #d4ae36;
+    --gold-dark: #a8841c;
+    --gold-soft: #4b3a17;
+    --tan: #8a6d4c;
+    --note-bg: #3d2c18;
+    --note-ink: #f0dfbd;
+    --error: #ff9c80;
+    --shadow: 0 10px 30px -18px rgba(0, 0, 0, 0.8);
+    color-scheme: dark;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Sin esto, `display: flex` de .suggestions ganaría al atributo hidden. */
+[hidden] {
+  display: none !important;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+a {
+  color: var(--gold-dark);
+  text-underline-offset: 3px;
+}
+
+@media (prefers-color-scheme: dark) {
+  a {
+    color: var(--gold);
+  }
+}
+
+:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.page {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding-inline: 20px;
+  padding-block: 44px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* ---------------------------------------------------------------- cabecera */
+
+.masthead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.masthead h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 5.5vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.headline {
+  margin: 6px 0 16px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+}
+
+@media (prefers-color-scheme: dark) {
+  .headline {
+    color: var(--gold);
+  }
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Píldoras con borde dorado, como los filtros de fuentes de la app. */
+.links a {
+  display: inline-block;
+  padding: 5px 14px;
+  border: 1.5px solid var(--gold);
+  border-radius: 999px;
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.links a:hover {
+  background: var(--gold);
+  color: #2d1f10;
+}
+
+/* Selector de idioma: botones redondos con aro dorado. */
+.lang-switch {
+  display: flex;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+.lang-button {
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 2px solid var(--tan);
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--field);
+  cursor: pointer;
+  opacity: 0.55;
+  filter: saturate(0.4);
+  transition: opacity 0.15s, filter 0.15s, border-color 0.15s, transform 0.15s;
+}
+
+.lang-button svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.lang-button:hover {
+  opacity: 0.9;
+  filter: none;
+}
+
+.lang-button[aria-pressed="true"] {
+  opacity: 1;
+  filter: none;
+  border: 3px solid var(--gold);
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 3px var(--gold-dark);
+}
+
+/* Separador con ornamento, como en el lector de la app. */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--gold);
+  font-size: 0.95rem;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1.5px;
+  background: var(--gold);
+  opacity: 0.8;
+}
+
+/* ---------------------------------------------------------------- códice */
+
+.codex {
+  position: relative;
+  padding: 14px;
+}
+
+/* Esquinas ornamentales (CodexCorner de la app): escuadra dorada redondeada,
+   corte diagonal, punto de oro y aro de oro viejo. */
+.corner {
+  position: absolute;
+  width: 54px;
+  height: 54px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2;
+  border-left: 3px solid var(--gold);
+  border-top: 3px solid var(--gold);
+  border-top-left-radius: 18px;
+}
+
+.corner::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: -12px;
+  width: 72px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--gold);
+  transform: rotate(-45deg);
+}
+
+.corner::after {
+  content: "";
+  position: absolute;
+  top: 9px;
+  left: 9px;
+  width: 11px;
+  height: 11px;
+  border: 2px solid var(--gold-dark);
+  border-radius: 50%;
+  box-shadow: -5px -5px 0 -2px var(--gold);
+}
+
+.corner-tl {
+  top: 0;
+  left: 0;
+}
+
+.corner-tr {
+  top: 0;
+  right: 0;
+  transform: rotate(90deg);
+}
+
+.corner-br {
+  bottom: 0;
+  right: 0;
+  transform: rotate(180deg);
+}
+
+.corner-bl {
+  bottom: 0;
+  left: 0;
+  transform: rotate(270deg);
+}
+
+/* ---------------------------------------------------------------- chat */
+
+.chat {
+  position: relative;
+  background: var(--card);
+  border: 2px solid var(--gold);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 26px 24px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.chat-head h2 {
+  margin: 0 0 4px;
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.chat-head p {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 0.95rem;
+}
+
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.suggestion {
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: left;
+  color: var(--ink);
+  background: transparent;
+  border: 1.5px solid var(--gold);
+  border-radius: 999px;
+  padding: 7px 15px;
+  cursor: pointer;
+}
+
+.suggestion:hover {
+  background: var(--gold);
+  color: #2d1f10;
+}
+
+.messages {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-height: min(60vh, 34rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.messages:empty {
+  display: none;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  max-width: 92%;
+}
+
+.message-user {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+
+.message-assistant,
+.message-note {
+  align-self: flex-start;
+}
+
+.bubble {
+  border-radius: 16px;
+  padding: 11px 15px;
+  overflow-wrap: anywhere;
+}
+
+/* Pregunta: oro, como la píldora activa de la app. */
+.message-user .bubble {
+  background: var(--gold);
+  color: #2d1f10;
+  font-weight: 600;
+  white-space: pre-wrap;
+  border-bottom-right-radius: 6px;
+}
+
+.message-assistant .bubble {
+  background: var(--bubble);
+  border: 1px solid var(--gold-soft);
+  border-bottom-left-radius: 6px;
+}
+
+.bubble p {
+  margin: 0 0 0.6em;
+}
+
+.bubble p:last-child,
+.bubble ul:last-child,
+.bubble ol:last-child {
+  margin-bottom: 0;
+}
+
+.bubble ul,
+.bubble ol {
+  margin: 0 0 0.6em;
+  padding-left: 1.3em;
+}
+
+.bubble li::marker {
+  color: var(--gold-dark);
+}
+
+.bubble strong {
+  font-weight: 800;
+}
+
+.bubble code {
+  font-family: var(--mono);
+  font-size: 0.86em;
+  background: var(--gold-soft);
+  padding: 1px 6px;
+  border-radius: 5px;
+}
+
+.bubble.is-pending::after {
+  content: "✦";
+  display: inline-block;
+  color: var(--gold);
+  animation: glint 1.2s ease-in-out infinite;
+}
+
+@keyframes glint {
+  50% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+}
+
+.caption {
+  margin: 5px 4px 0;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-3);
+}
+
+.message-note p {
+  margin: 0;
+  padding: 10px 15px;
+  border-radius: 14px;
+  background: var(--note-bg);
+  border-left: 3px solid var(--gold);
+  color: var(--note-ink);
+  font-size: 0.93rem;
+}
+
+.message-note a {
+  color: inherit;
+}
+
+.status {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--ink-3);
+}
+
+.status:empty {
+  display: none;
+}
+
+.status[data-kind="error"] {
+  color: var(--error);
+}
+
+/* ---------------------------------------------------------------- composer */
+
+.composer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.composer textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 3.2em;
+  max-height: 14em;
+  font: inherit;
+  color: var(--ink);
+  background: var(--field);
+  border: 1.5px solid var(--tan);
+  border-radius: 14px;
+  padding: 11px 13px;
+}
+
+.composer textarea::placeholder {
+  color: var(--ink-3);
+}
+
+.composer textarea:focus-visible {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-soft);
+}
+
+.composer-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.counter {
+  margin-right: auto;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.button-primary,
+.button-secondary {
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 8px 22px;
+  cursor: pointer;
+}
+
+.button-primary {
+  color: #2d1f10;
+  background: var(--gold);
+  border: 2px solid var(--gold-dark);
+}
+
+.button-primary:hover:not(:disabled) {
+  background: var(--gold-dark);
+  color: #fcf7ec;
+}
+
+.button-secondary {
+  color: var(--ink-2);
+  background: transparent;
+  border: 1.5px solid var(--tan);
+}
+
+.button-primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.turnstile:empty {
+  display: none;
+}
+
+/* ---------------------------------------------------------------- pie */
+
+.colophon {
+  text-align: center;
+  color: var(--ink-3);
+  font-size: 0.85rem;
+}
+
+.colophon p {
+  margin: 0;
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding-block: 26px 24px;
+  }
+  .codex {
+    padding: 10px;
+  }
+  .chat {
+    padding: 20px 16px 16px;
+  }
+  .message {
+    max-width: 100%;
+  }
+  .corner {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bubble.is-pending::after {
+    animation: none;
+  }
+  .lang-button {
+    transition: none;
+  }
+}
+
+/* ---------------------------------------------------------------- modo integrado
+   La web principal abre chat.html?embed=1 en un panel lateral (ver embed.js). Sin cabecera
+   ni esquinas, a toda altura y con la paleta de la web: azul marino y latón. */
+
+html.embedded {
+  --bg: #ffffff;
+  --card: #ffffff;
+  --bubble: #f3f5f8;
+  --field: #ffffff;
+  --ink: #0f1b2d;
+  --ink-2: #334155;
+  --ink-3: #64748b;
+  --gold: #c29a4a;
+  --gold-dark: #8a6a2c;
+  --gold-soft: #efe4cc;
+  --tan: #cfd6df;
+  --note-bg: #f1f4f8;
+  --note-ink: #334155;
+  --error: #b42318;
+  --shadow: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  html.embedded {
+    --bg: #101a28;
+    --card: #101a28;
+    --bubble: #152235;
+    --field: #0d1622;
+    --ink: #e8eef6;
+    --ink-2: #c3cfdd;
+    --ink-3: #8fa0b5;
+    --gold: #d3ae5f;
+    --gold-dark: #e2c27f;
+    --gold-soft: #2a2415;
+    --tan: #2a3b55;
+    --note-bg: #152235;
+    --note-ink: #c3cfdd;
+    --error: #ff9c80;
+  }
+}
+
+html.embedded,
+html.embedded body,
+html.embedded .page,
+html.embedded .codex {
+  height: 100%;
+}
+
+html.embedded .masthead,
+html.embedded .divider,
+html.embedded .colophon,
+html.embedded .corner,
+html.embedded .chat-head h2 {
+  display: none;
+}
+
+html.embedded .page {
+  max-width: none;
+  padding: 0;
+  gap: 0;
+}
+
+html.embedded .codex {
+  padding: 0;
+}
+
+html.embedded .chat {
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+  padding: 16px 18px 14px;
+  gap: 12px;
+}
+
+html.embedded .messages {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: none;
+}

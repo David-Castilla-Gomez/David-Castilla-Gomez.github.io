@@ -1,0 +1,823 @@
+/* Web personal de David Castilla Gómez.
+   Sobria, de ingeniería: azul marino y latón (el latón enlaza con el dorado del chat).
+   Sin fuentes ni recursos externos: todo sale del propio sitio. */
+
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --surface-2: #eef1f5;
+  --ink: #0f1b2d;
+  --ink-2: #334155;
+  --muted: #5b6b80;
+  --line: #dde3ea;
+  --navy: #0f2a4a;
+  --link: #1d4577;
+  --brass: #b08a3e;
+  --brass-strong: #8a6a2c;
+  --brass-soft: #f3ead6;
+  --on-brass: #1b1408;
+  --shadow: 0 1px 2px rgba(15, 27, 45, 0.06), 0 14px 34px -20px rgba(15, 27, 45, 0.35);
+  --radius: 14px;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, "Liberation Mono", monospace;
+  --topbar-h: 64px;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0a111c;
+    --surface: #101a28;
+    --surface-2: #132033;
+    --ink: #e8eef6;
+    --ink-2: #c3cfdd;
+    --muted: #93a3b8;
+    --line: #22324a;
+    --navy: #cfe0f5;
+    --link: #9dc0ea;
+    --brass: #d3ae5f;
+    --brass-strong: #e2c27f;
+    --brass-soft: #2a2415;
+    --on-brass: #1b1408;
+    --shadow: 0 16px 36px -22px rgba(0, 0, 0, 0.8);
+    color-scheme: dark;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--topbar-h) + 12px);
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--link);
+  text-underline-offset: 3px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--brass);
+  outline-offset: 2px;
+}
+
+svg {
+  width: 1.1em;
+  height: 1.1em;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.container {
+  width: 100%;
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  z-index: 100;
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: var(--brass);
+  color: var(--on-brass);
+  font-weight: 700;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+/* ---------------------------------------------------------------- barra superior */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: saturate(1.4) blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.topbar-inner {
+  height: var(--topbar-h);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  font-weight: 800;
+  text-decoration: none;
+  margin-right: auto;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: var(--navy);
+  color: var(--bg);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  box-shadow: inset 0 0 0 2px var(--brass);
+}
+
+.nav-list {
+  display: flex;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-list a {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: var(--ink-2);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.nav-list a:hover {
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+.nav-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.nav-toggle svg {
+  width: 20px;
+  height: 20px;
+  margin: auto;
+}
+
+.lang-switch {
+  display: flex;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+}
+
+.lang-button {
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.lang-button[aria-pressed="true"] {
+  background: var(--navy);
+  color: var(--bg);
+}
+
+/* ---------------------------------------------------------------- botones */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font: inherit;
+  font-size: 0.97rem;
+  font-weight: 700;
+  line-height: 1.2;
+  padding: 11px 18px;
+  border-radius: 10px;
+  border: 1.5px solid transparent;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.btn-primary {
+  background: var(--brass);
+  border-color: var(--brass);
+  color: var(--on-brass);
+}
+
+.btn-primary:hover {
+  background: var(--brass-strong);
+  border-color: var(--brass-strong);
+}
+
+.btn-ghost {
+  background: var(--surface);
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+.btn-ghost:hover {
+  border-color: var(--brass);
+}
+
+/* ---------------------------------------------------------------- portada */
+
+.hero {
+  padding-block: 64px 72px;
+  border-bottom: 1px solid var(--line);
+  background:
+    radial-gradient(900px 380px at 85% 10%, color-mix(in srgb, var(--brass) 12%, transparent), transparent 70%),
+    var(--bg);
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.85fr);
+  align-items: center;
+  gap: 56px;
+}
+
+.kicker,
+.eyebrow {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--brass-strong);
+}
+
+.hero h1 {
+  margin: 10px 0 18px;
+  font-size: clamp(2.3rem, 5.2vw, 3.6rem);
+  font-weight: 850;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.lead {
+  max-width: 38em;
+  font-size: 1.12rem;
+  color: var(--ink-2);
+}
+
+.availability {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  font-size: 0.93rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.pulse {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #1f9d55;
+  box-shadow: 0 0 0 4px color-mix(in srgb, #1f9d55 22%, transparent);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.portrait {
+  position: relative;
+  margin: 0;
+  justify-self: center;
+  width: min(100%, 360px);
+}
+
+/* Marco desplazado en latón: un guiño sobrio al marco del chat. */
+.portrait::before {
+  content: "";
+  position: absolute;
+  inset: 16px -16px -16px 16px;
+  border: 2px solid var(--brass);
+  border-radius: 22px;
+}
+
+.portrait img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+}
+
+/* ---------------------------------------------------------------- secciones */
+
+.section {
+  padding-block: 76px;
+}
+
+.section-alt {
+  background: var(--surface-2);
+  border-block: 1px solid var(--line);
+}
+
+.section h2 {
+  margin: 8px 0 34px;
+  font-size: clamp(1.7rem, 3.4vw, 2.2rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+/* Trayectoria: línea vertical con hitos de latón. */
+.timeline {
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 30px;
+  list-style: none;
+  display: grid;
+  gap: 30px;
+  max-width: 820px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: var(--line);
+}
+
+.tl-item {
+  position: relative;
+}
+
+.tl-item::before {
+  content: "";
+  position: absolute;
+  left: -30px;
+  top: 5px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 3px solid var(--brass);
+}
+
+.tl-item-side::before {
+  border-color: var(--muted);
+}
+
+.tl-date {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.tl-item h3 {
+  margin-top: 4px;
+  font-size: 1.18rem;
+  font-weight: 750;
+}
+
+.tl-org {
+  margin: 2px 0 8px;
+  font-weight: 600;
+  color: var(--brass-strong);
+}
+
+.tl-item p:last-child {
+  color: var(--ink-2);
+}
+
+/* Proyectos. */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.card-feature {
+  border-top: 3px solid var(--brass);
+}
+
+.card h3 {
+  font-size: 1.1rem;
+  font-weight: 750;
+}
+
+.card p {
+  color: var(--ink-2);
+  font-size: 0.95rem;
+}
+
+.tags,
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tags {
+  margin-top: auto;
+}
+
+.tags li,
+.chips li {
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.card-link {
+  align-self: flex-start;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 0.93rem;
+  font-weight: 700;
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+/* Premios. */
+.awards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.awards li {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.award-year {
+  flex: none;
+  padding: 3px 9px;
+  border-radius: 8px;
+  background: var(--brass-soft);
+  color: var(--brass-strong);
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.awards h3 {
+  font-size: 1.02rem;
+  font-weight: 750;
+}
+
+.awards p {
+  color: var(--ink-2);
+  font-size: 0.93rem;
+}
+
+/* Habilidades. */
+.skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 22px 28px;
+}
+
+.skill-group h3,
+.extras h3 {
+  margin-bottom: 10px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.chips li {
+  background: var(--surface);
+}
+
+.extras {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px;
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid var(--line);
+}
+
+.plain-list {
+  margin: 0;
+  padding-left: 1.1em;
+  display: grid;
+  gap: 4px;
+  color: var(--ink-2);
+  font-size: 0.95rem;
+}
+
+.plain-list li::marker {
+  color: var(--brass);
+}
+
+/* Contacto. */
+.contact-inner {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact h2 {
+  margin-bottom: 14px;
+}
+
+.contact-text {
+  max-width: 34em;
+  color: var(--ink-2);
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 26px;
+}
+
+.contact-actions .btn-primary span {
+  overflow-wrap: anywhere;
+}
+
+.footer {
+  border-top: 1px solid var(--line);
+  padding-block: 26px;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.footer a {
+  color: inherit;
+}
+
+/* ---------------------------------------------------------------- chat */
+
+.chat-fab {
+  position: fixed;
+  right: 20px;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  z-index: 30;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--navy);
+  color: var(--bg);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  box-shadow: 0 12px 28px -12px rgba(15, 27, 45, 0.6);
+  cursor: pointer;
+}
+
+.chat-fab:hover {
+  background: var(--brass);
+  color: var(--on-brass);
+}
+
+.drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+}
+
+.drawer-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 17, 28, 0.45);
+  animation: fade 0.2s ease-out;
+}
+
+.drawer-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(460px, 100%);
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border-left: 1px solid var(--line);
+  box-shadow: -18px 0 40px -24px rgba(0, 0, 0, 0.5);
+  animation: slide-in 0.22s ease-out;
+}
+
+.drawer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.drawer-head h2 {
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.drawer-close {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.drawer-frame {
+  flex: 1;
+  width: 100%;
+  border: 0;
+  background: var(--surface);
+}
+
+body.drawer-open {
+  overflow: hidden;
+}
+
+body.drawer-open .chat-fab {
+  display: none;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(24px);
+    opacity: 0;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+/* ---------------------------------------------------------------- móvil */
+
+@media (max-width: 860px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .portrait {
+    order: -1;
+    width: min(62%, 260px);
+    justify-self: start;
+  }
+}
+
+@media (max-width: 760px) {
+  .nav-toggle {
+    display: grid;
+  }
+  .nav-list {
+    display: none;
+    position: absolute;
+    top: var(--topbar-h);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    padding: 10px 20px 16px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-list.is-open {
+    display: flex;
+  }
+  .brand-name {
+    display: none;
+  }
+  .brand {
+    margin-right: 0;
+  }
+  .nav {
+    margin-right: auto;
+  }
+  .hero {
+    padding-block: 36px 52px;
+  }
+  .section {
+    padding-block: 56px;
+  }
+  .chat-fab span {
+    display: none;
+  }
+  .chat-fab {
+    padding: 14px;
+  }
+  .chat-fab svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .drawer-backdrop,
+  .drawer-panel {
+    animation: none;
+  }
+}

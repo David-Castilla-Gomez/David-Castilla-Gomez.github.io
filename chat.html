@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; connect-src 'self' https://cv-chatbot.david-castilla.workers.dev http://localhost:8787 http://127.0.0.1:8787; img-src 'self' data:; style-src 'self' 'unsafe-inline'; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="theme-color" content="#F5E6C8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1d140b" media="(prefers-color-scheme: dark)">
+  <title>David Castilla Gómez · Ingeniero</title>
+  <meta name="description" content="Pregunta a mi CV: ingeniería de sistemas, simulación, gemelos digitales e IA aplicada.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="embed.js"></script>
+</head>
+<body>
+  <div class="page">
+    <header class="masthead">
+      <div class="masthead-text">
+        <h1>David Castilla Gómez</h1>
+        <p class="headline" data-i18n="headline">Ingeniero</p>
+        <ul class="links">
+          <li><a href="mailto:davidcastillagomezcortazar@gmail.com">Email</a></li>
+          <li><a href="https://www.linkedin.com/in/david-castilla-gomez/" rel="noopener noreferrer">LinkedIn</a></li>
+          <li><a href="https://github.com/David-Castilla-Gomez" rel="noopener noreferrer">GitHub</a></li>
+        </ul>
+      </div>
+
+      <div class="lang-switch" role="group" data-i18n-aria="langGroup" aria-label="Idioma">
+        <button type="button" class="lang-button" data-lang="es" aria-pressed="true" data-i18n-aria="langEs" aria-label="Ver en español">
+          <svg viewBox="0 0 750 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+            <rect width="750" height="500" fill="#c60b1e"/>
+            <rect y="125" width="750" height="250" fill="#ffc400"/>
+          </svg>
+        </button>
+        <button type="button" class="lang-button" data-lang="en" aria-pressed="false" data-i18n-aria="langEn" aria-label="View in English">
+          <svg viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+            <clipPath id="uk-s"><path d="M0,0 v30 h60 v-30 z"/></clipPath>
+            <clipPath id="uk-t"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath>
+            <g clip-path="url(#uk-s)">
+              <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
+              <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
+              <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#uk-t)" stroke="#C8102E" stroke-width="4"/>
+              <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
+              <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
+            </g>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="divider" aria-hidden="true"><span>✦</span></div>
+
+    <main class="codex">
+      <span class="corner corner-tl" aria-hidden="true"></span>
+      <span class="corner corner-tr" aria-hidden="true"></span>
+      <span class="corner corner-br" aria-hidden="true"></span>
+      <span class="corner corner-bl" aria-hidden="true"></span>
+
+      <section class="chat" aria-labelledby="chat-title">
+        <div class="chat-head">
+          <h2 id="chat-title" data-i18n="chatTitle">Pregunta por mi perfil</h2>
+          <p data-i18n="chatIntro">Este asistente responde solo con la información de mi CV. Puedes escribir en español o en inglés.</p>
+        </div>
+
+        <div id="suggestions" class="suggestions">
+          <button type="button" class="suggestion" data-i18n="s1">¿Qué experiencia tiene David en MBSE y defensa?</button>
+          <button type="button" class="suggestion" data-i18n="s2">¿Qué proyectos de IA y software ha desarrollado?</button>
+          <button type="button" class="suggestion" data-i18n="s3">¿Cuál es su disponibilidad y dónde puede trabajar?</button>
+        </div>
+
+        <ol id="messages" class="messages" role="log" aria-live="polite" aria-busy="false"></ol>
+
+        <div id="turnstile" class="turnstile"></div>
+        <p id="status" class="status" role="status"></p>
+
+        <form id="chat-form" class="composer" novalidate>
+          <label for="q" class="visually-hidden" data-i18n="questionLabel">Tu pregunta</label>
+          <textarea id="q" name="q" rows="2" maxlength="1000" data-i18n-placeholder="placeholder"
+                    placeholder="Escribe tu pregunta…" autocomplete="off" required></textarea>
+          <div class="composer-bar">
+            <span id="counter" class="counter" aria-live="off">0/1000</span>
+            <button id="stop" type="button" class="button-secondary" data-i18n="stop" hidden>Detener</button>
+            <button id="send" type="submit" class="button-primary" data-i18n="send" disabled>Enviar</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="colophon">
+      <p data-i18n="footer">Las conversaciones no se guardan.</p>
+    </footer>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&amp;onload=onTurnstileLoad" async defer></script>
+</body>
+</html>

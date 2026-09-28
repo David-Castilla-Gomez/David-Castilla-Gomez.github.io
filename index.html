@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; frame-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a111c" media="(prefers-color-scheme: dark)">
+  <title>David Castilla Gómez · Ingeniero</title>
+  <meta name="description" content="Ingeniero: MBSE, gemelos digitales, simulación e IA aplicada. Pregunta a mi asistente de IA por mi perfil.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="web.css">
+  <script src="web.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="skip">Saltar al contenido</a>
+
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#top" aria-label="David Castilla Gómez">
+        <span class="brand-mark" aria-hidden="true">DC</span>
+        <span class="brand-name">David Castilla Gómez</span>
+      </a>
+
+      <nav class="nav" data-i18n-aria="navLabel" aria-label="Secciones">
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-list"
+                data-i18n-aria="menu" aria-label="Menú">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <ul id="nav-list" class="nav-list">
+          <li><a href="#trayectoria" data-i18n="navPath">Trayectoria</a></li>
+          <li><a href="#proyectos" data-i18n="navProjects">Proyectos</a></li>
+          <li><a href="#premios" data-i18n="navAwards">Premios</a></li>
+          <li><a href="#habilidades" data-i18n="navSkills">Habilidades</a></li>
+          <li><a href="#contacto" data-i18n="navContact">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="lang-switch" role="group" data-i18n-aria="langGroup" aria-label="Idioma">
+        <button type="button" class="lang-button" data-lang="es" aria-pressed="true" lang="es">ES</button>
+        <button type="button" class="lang-button" data-lang="en" aria-pressed="false" lang="en">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ------------------------------------------------------------------ portada -->
+    <section class="hero" id="top">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <p class="kicker" data-i18n="kicker">Ingeniero</p>
+          <h1>David Castilla Gómez</h1>
+          <p class="lead" data-i18n="lead">Ingeniero mecánico con un MSc en Motorsport Engineering por Oxford Brookes, cursando el Máster en Matemática Industrial en la UPM. Trabajo en MBSE, gemelos digitales, simulación e IA aplicada.</p>
+          <p class="availability"><span class="pulse" aria-hidden="true"></span><span data-i18n="availability">Disponible ya · Madrid, resto de España, remoto o Europa</span></p>
+          <div class="hero-actions">
+            <button type="button" class="btn btn-primary js-open-chat">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h16v11H9l-5 4z"/></svg>
+              <span data-i18n="ctaChat">Pregunta a mi asistente de IA</span>
+            </button>
+            <a class="btn btn-ghost" href="https://www.linkedin.com/in/david-castilla-gomez/" rel="noopener noreferrer">LinkedIn</a>
+            <a class="btn btn-ghost" href="https://github.com/David-Castilla-Gomez" rel="noopener noreferrer">GitHub</a>
+            <a class="btn btn-ghost" href="mailto:davidcastillagomezcortazar@gmail.com">Email</a>
+          </div>
+        </div>
+        <figure class="portrait">
+          <picture>
+            <source srcset="img/david.webp" type="image/webp">
+            <img src="img/david.jpg" width="433" height="433" alt="David Castilla Gómez" data-i18n-alt="photoAlt">
+          </picture>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------ trayectoria -->
+    <section class="section" id="trayectoria" aria-labelledby="t-path">
+      <div class="container">
+        <p class="eyebrow" data-i18n="pathEyebrow">De dónde vengo</p>
+        <h2 id="t-path" data-i18n="pathTitle">Trayectoria</h2>
+        <ol class="timeline">
+          <li class="tl-item">
+            <p class="tl-date" data-i18n="p1date">mar – jul 2026</p>
+            <h3 data-i18n="p1title">Becario en Herramientas y Procesos de Diseño Avanzados</h3>
+            <p class="tl-org" data-i18n="p1org">Navantia · Madrid</p>
+            <p data-i18n="p1text">Modelé arquitecturas con el método Arcadia en Capella y SysON, trabajé en requisitos, PBS, líneas base e ICD en Siemens Teamcenter y en la Disposición General en Siemens NX, y desarrollé un agente de Microsoft Copilot con scripts de Python que genera el PBS a partir de los requisitos del cliente, adoptado por el equipo como plantilla.</p>
+          </li>
+          <li class="tl-item">
+            <p class="tl-date" data-i18n="p2date">sep 2025 – actualidad</p>
+            <h3 data-i18n="p2title">Máster en Matemática Industrial (M2i)</h3>
+            <p class="tl-org" data-i18n="p2org">Universidad Politécnica de Madrid</p>
+            <p data-i18n="p2text">Media de 8,3/10 hasta ahora. TFM: gemelo digital predictivo para operaciones con vehículos no tripulados, con Navantia como socio industrial.</p>
+          </li>
+          <li class="tl-item">
+            <p class="tl-date">2022 – 2023</p>
+            <h3 data-i18n="p3title">MSc Motorsport Engineering · Merit</h3>
+            <p class="tl-org" data-i18n="p3org">Oxford Brookes University · Reino Unido</p>
+            <p data-i18n="p3text">Distinction en el proyecto final (71,5/100) y en Composite Design and Impact Modelling (73,5/100).</p>
+          </li>
+          <li class="tl-item">
+            <p class="tl-date">2018 – 2022</p>
+            <h3 data-i18n="p4title">Grado en Ingeniería Mecánica</h3>
+            <p class="tl-org">Universidad de Cantabria</p>
+            <p data-i18n="p4text">Nota media 7,34/10. TFG 10/10 y Automóviles 9,5/10, ambos con Matrícula de Honor.</p>
+          </li>
+          <li class="tl-item tl-item-side">
+            <p class="tl-date" data-i18n="p5date">2014 – jul 2025</p>
+            <h3 data-i18n="p5title">Fundador y creador de contenido</h3>
+            <p class="tl-org" data-i18n="p5org">ElReyGuiri · marca de contenido de Fórmula 1</p>
+            <p data-i18n="p5text">Unos 595.000 seguidores entre YouTube, Twitch, X, Instagram y TikTok; creador para DUX Gaming y Veloce Esports (Reino Unido).</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------ proyectos -->
+    <section class="section section-alt" id="proyectos" aria-labelledby="t-projects">
+      <div class="container">
+        <p class="eyebrow" data-i18n="projectsEyebrow">Lo que he construido</p>
+        <h2 id="t-projects" data-i18n="projectsTitle">Proyectos</h2>
+        <div class="cards">
+          <article class="card card-feature">
+            <h3 data-i18n="c1title">Gemelo digital predictivo (TFM)</h3>
+            <p data-i18n="c1text">Una nave nodriza mantiene el seguimiento de un vehículo de superficie no tripulado durante cortes de comunicaciones. Arcadia en SysML v2, modelos de orden reducido, redes residuales y LSTM y asimilación de datos Kalman/DMDc; núcleo reescrito en C++17.</p>
+            <ul class="tags"><li>SysML v2</li><li>Kalman/DMDc</li><li>C++17</li></ul>
+          </article>
+          <article class="card card-feature">
+            <h3 data-i18n="c2title">Asistente de CV con IA</h3>
+            <p data-i18n="c2text">Chatbot LLM que responde a reclutadores solo con mi CV. API en TypeScript sobre Cloudflare Workers, Groq con respaldo en Workers AI, salvaguardas y límites de uso; coste cero.</p>
+            <ul class="tags"><li>LLM</li><li>TypeScript</li><li>Cloudflare Workers</li></ul>
+            <button type="button" class="card-link js-open-chat" data-i18n="c2cta">Pruébalo</button>
+          </article>
+          <article class="card">
+            <h3>Ingenioso Intelecto</h3>
+            <p data-i18n="c3text">Modelo de lenguaje de 242M parámetros entrenado desde cero en PyTorch con literatura del Siglo de Oro; perplejidad 21,93 en un conjunto de prueba descontaminado. Artículo en preparación.</p>
+            <ul class="tags"><li>PyTorch</li><li>LLM</li><li data-i18n="c3tag">242M parámetros</li></ul>
+            <a class="card-link" href="https://github.com/David-Castilla-Gomez/ingenioso-intelecto" rel="noopener noreferrer" data-i18n="c3cta">Página del proyecto</a>
+          </article>
+          <article class="card">
+            <h3>Hive Shield</h3>
+            <p data-i18n="c4text">Premio a la Innovación en el UPM Idea Challenge (nov 2025): concepto contra enjambres de drones, en un equipo de 4.</p>
+            <ul class="tags"><li data-i18n="c4tag1">Defensa</li><li>Drones</li></ul>
+          </article>
+          <article class="card">
+            <h3>XII Iberian Modelling Week</h3>
+            <p data-i18n="c5text">ML adversarial en Lisboa (2026): una perturbación universal dispersa de 50 píxeles bajó un clasificador MNIST del 98,9 % a ~47 % de exactitud. Coautor del informe.</p>
+            <ul class="tags"><li data-i18n="c5tag1">ML adversarial</li><li data-i18n="c5tag2">Optimización</li></ul>
+          </article>
+          <article class="card">
+            <h3 data-i18n="c6title">Simulador de tiempo por vuelta</h3>
+            <p data-i18n="c6text">Proyecto final del MSc (Distinction): mejoré un simulador en MATLAB y lo validé en 13 circuitos frente a mis vueltas en Assetto Corsa; el error bajó de ~25 % a 2–3 %.</p>
+            <ul class="tags"><li>MATLAB</li><li data-i18n="c6tag2">Dinámica vehicular</li></ul>
+          </article>
+          <article class="card">
+            <h3 data-i18n="c7title">Dinámica de un monoplaza</h3>
+            <p data-i18n="c7text">TFG con Matrícula de Honor: modelo paramétrico en MSC ADAMS/View con interfaz propia, aplicado a un Williams FW42.</p>
+            <ul class="tags"><li>MSC ADAMS</li><li data-i18n="c7tag2">Multicuerpo</li></ul>
+          </article>
+          <article class="card">
+            <h3>Cornamusa</h3>
+            <p data-i18n="c8text">Lenguaje de programación con palabras clave en español: unas 49.000 líneas de C, máquina virtual de bytecode, recolector de basura y servidor LSP. Repositorio privado.</p>
+            <ul class="tags"><li>C</li><li data-i18n="c8tag2">Intérpretes</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------ premios -->
+    <section class="section" id="premios" aria-labelledby="t-awards">
+      <div class="container">
+        <p class="eyebrow" data-i18n="awardsEyebrow">Reconocimientos</p>
+        <h2 id="t-awards" data-i18n="awardsTitle">Premios y distinciones</h2>
+        <ul class="awards">
+          <li><span class="award-year">2025</span><div><h3 data-i18n="a1title">Premio a la Innovación</h3><p data-i18n="a1text">UPM Idea Challenge, con Hive Shield</p></div></li>
+          <li><span class="award-year">2023</span><div><h3>Distinction</h3><p data-i18n="a2text">Proyecto final del MSc (71,5/100), Oxford Brookes</p></div></li>
+          <li><span class="award-year">2023</span><div><h3>Distinction</h3><p data-i18n="a3text">Composite Design and Impact Modelling (73,5/100), Oxford Brookes</p></div></li>
+          <li><span class="award-year">2022</span><div><h3 data-i18n="a4title">Dos Matrículas de Honor</h3><p data-i18n="a4text">TFG (10/10) y Automóviles (9,5/10), Universidad de Cantabria</p></div></li>
+          <li><span class="award-year">2019</span><div><h3 data-i18n="a5title">Trofeo de Karting</h3><p data-i18n="a5text">Ganador, Universidad de Cantabria</p></div></li>
+          <li><span class="award-year">2019</span><div><h3>F1 Esports Series</h3><p data-i18n="a6text">Clasificado para los playoffs</p></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------ habilidades -->
+    <section class="section section-alt" id="habilidades" aria-labelledby="t-skills">
+      <div class="container">
+        <p class="eyebrow" data-i18n="skillsEyebrow">Herramientas</p>
+        <h2 id="t-skills" data-i18n="skillsTitle">Habilidades</h2>
+        <div class="skills">
+          <div class="skill-group">
+            <h3 data-i18n="s1title">Sistemas y PLM</h3>
+            <ul class="chips"><li>MBSE</li><li>Arcadia</li><li>Capella</li><li>SysON</li><li>SysML v2</li><li data-i18n="s1req">Gestión de requisitos</li><li data-i18n="s1trace">Trazabilidad</li><li>V&amp;V</li><li>Siemens Teamcenter</li><li>Siemens NX</li></ul>
+          </div>
+          <div class="skill-group">
+            <h3 data-i18n="s2title">Programación</h3>
+            <ul class="chips"><li>Python</li><li>NumPy</li><li>SciPy</li><li>PyTorch</li><li>C</li><li>C++17</li><li>CMake</li><li>MATLAB</li><li>TypeScript</li><li>Git</li><li>Docker</li><li>Azure DevOps</li><li>Linux</li></ul>
+          </div>
+          <div class="skill-group">
+            <h3 data-i18n="s3title">IA</h3>
+            <ul class="chips"><li>PyTorch</li><li>LSTM</li><li data-i18n="s3res">Redes residuales</li><li data-i18n="s3adv">ML adversarial</li><li data-i18n="s3llm">Aplicaciones con LLM</li></ul>
+          </div>
+          <div class="skill-group">
+            <h3 data-i18n="s4title">Simulación</h3>
+            <ul class="chips"><li>MSC ADAMS</li><li>Simulink</li><li>STAR-CCM+</li><li>OpenFOAM</li><li>LS-DYNA</li><li>Patran/Nastran</li><li>AVL VSM</li></ul>
+          </div>
+          <div class="skill-group">
+            <h3 data-i18n="s5title">Matemáticas</h3>
+            <ul class="chips"><li data-i18n="s5fem">MEF</li><li data-i18n="s5rom">Modelos de orden reducido</li><li data-i18n="s5kalman">Filtro de Kalman</li><li data-i18n="s5da">Asimilación de datos</li><li data-i18n="s5bif">Bifurcaciones</li><li data-i18n="s5opt">Optimización</li></ul>
+          </div>
+          <div class="skill-group">
+            <h3>CAD</h3>
+            <ul class="chips"><li>SolidWorks</li><li>CATIA V5</li><li>Autodesk Inventor</li></ul>
+          </div>
+        </div>
+
+        <div class="extras">
+          <div>
+            <h3 data-i18n="certsTitle">Certificados</h3>
+            <ul class="plain-list">
+              <li data-i18n="cert1">Siemens Xcelerator Academy: 17 itinerarios (2026)</li>
+              <li>Machine Learning Specialization, DeepLearning.AI &amp; Stanford (2024)</li>
+              <li>Simulink Fundamentals, MathWorks (2024)</li>
+              <li>Applied Vehicle Dynamics, OptimumG (2024)</li>
+              <li>Race Car Aerodynamics, JKF Aero (2024)</li>
+              <li>Python &amp; scikit-learn, MLNOW (2024)</li>
+            </ul>
+          </div>
+          <div>
+            <h3 data-i18n="langsTitle">Idiomas</h3>
+            <ul class="plain-list">
+              <li data-i18n="lang1">Español: nativo</li>
+              <li data-i18n="lang2">Inglés: B2 del MCER (Cambridge FCE; IELTS Academic 6,5) y MSc cursado en el Reino Unido</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------ contacto -->
+    <section class="section contact" id="contacto" aria-labelledby="t-contact">
+      <div class="container contact-inner">
+        <p class="eyebrow" data-i18n="contactEyebrow">Contacto</p>
+        <h2 id="t-contact" data-i18n="contactTitle">Hablemos</h2>
+        <p class="contact-text" data-i18n="contactText">Estoy disponible para incorporarme ya. La forma más rápida de conocer mi perfil es preguntar a mi asistente; para todo lo demás, escríbeme.</p>
+        <div class="contact-actions">
+          <a class="btn btn-primary" href="mailto:davidcastillagomezcortazar@gmail.com">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18v12H3z M3 7l9 6 9-6"/></svg>
+            <span>davidcastillagomezcortazar@gmail.com</span>
+          </a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/david-castilla-gomez/" rel="noopener noreferrer">LinkedIn</a>
+          <a class="btn btn-ghost" href="https://github.com/David-Castilla-Gomez" rel="noopener noreferrer">GitHub</a>
+          <button type="button" class="btn btn-ghost js-open-chat" data-i18n="ctaChatShort">Asistente de IA</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© 2026 David Castilla Gómez</p>
+      <p data-i18n="footerPrivacy">Sin cookies ni seguimiento</p>
+    </div>
+  </footer>
+
+  <!-- Chat: se carga solo cuando alguien lo abre (así no se gasta cupo ni se pide verificación). -->
+  <button type="button" class="chat-fab js-open-chat" aria-controls="chat-drawer">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h16v11H9l-5 4z"/></svg>
+    <span data-i18n="fab">Asistente de IA</span>
+  </button>
+
+  <div class="drawer" id="chat-drawer" hidden>
+    <div class="drawer-backdrop" data-close></div>
+    <div class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+      <div class="drawer-head">
+        <h2 id="drawer-title" data-i18n="drawerTitle">Asistente de IA</h2>
+        <button type="button" class="drawer-close" data-close data-i18n-aria="close" aria-label="Cerrar">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <iframe id="chat-frame" class="drawer-frame" data-i18n-title="frameTitle" title="Asistente de IA de David"></iframe>
+    </div>
+  </div>
+</body>
+</html>
