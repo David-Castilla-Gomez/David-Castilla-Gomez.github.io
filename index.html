@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; frame-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
+        content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; frame-src 'self'; connect-src https://cv-chatbot.david-castilla.workers.dev http://localhost:8787 http://127.0.0.1:8787; base-uri 'none'; form-action 'none'; object-src 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0a111c" media="(prefers-color-scheme: dark)">
@@ -12,6 +12,7 @@
   <meta name="description" content="Ingeniero: MBSE, gemelos digitales, simulación e IA aplicada. Pregunta a mi asistente de IA por mi perfil.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="web.css">
+  <script src="config.js" defer></script>
   <script src="web.js" defer></script>
 </head>
 <body>
@@ -258,7 +259,7 @@
   <footer class="footer">
     <div class="container footer-inner">
       <p>© 2026 David Castilla Gómez</p>
-      <p data-i18n="footerPrivacy">Sin cookies ni seguimiento</p>
+      <p data-i18n="footerPrivacy">Sin cookies ni rastreadores</p>
     </div>
   </footer>
 

@@ -615,4 +615,14 @@
   applyLanguage(lang);
   setStatus("verifying");
   updateCounter();
+
+  // Estadística anónima: suma un chat abierto al contador del día (sin cookies, IPs ni
+  // identificadores; nada de la conversación). Se respetan Do Not Track y Global Privacy Control.
+  try {
+    if (navigator.doNotTrack !== "1" && !navigator.globalPrivacyControl) {
+      fetch(cfg.apiBase + "/api/event", { method: "POST", body: "chat", keepalive: true }).catch(function () {});
+    }
+  } catch (e) {
+    // Nunca debe afectar al chat.
+  }
 })();

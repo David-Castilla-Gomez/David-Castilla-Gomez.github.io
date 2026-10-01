@@ -101,7 +101,7 @@
     contactTitle: "Let's talk",
     contactText: "I can start right away. The quickest way to get to know my profile is to ask my assistant; for anything else, write to me.",
     ctaChatShort: "AI assistant",
-    footerPrivacy: "No cookies, no tracking",
+    footerPrivacy: "No cookies, no trackers",
     fab: "AI assistant",
     drawerTitle: "AI assistant",
     close: "Close",
@@ -240,4 +240,15 @@
 
   // #chat y los enlaces de los CVs ya enviados (?lang=es|en) abren el chat directamente.
   if (location.hash === "#chat" || new URLSearchParams(location.search).has("lang")) openChat();
+
+  // Estadística anónima: suma una visita al contador del día (sin cookies, IPs ni identificadores).
+  // El chat abierto lo cuenta el propio chat. Se respetan Do Not Track y Global Privacy Control.
+  try {
+    var cfg = window.CV_CHAT_CONFIG;
+    if (cfg && navigator.doNotTrack !== "1" && !navigator.globalPrivacyControl) {
+      fetch(cfg.apiBase + "/api/event", { method: "POST", body: "visit", keepalive: true }).catch(function () {});
+    }
+  } catch (e) {
+    // Nunca debe afectar a la página.
+  }
 })();
